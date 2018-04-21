@@ -23,17 +23,42 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('users')}}">Users <span class="sr-only">(current)</span></a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Users
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="nav-link" href="/users">Show all <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/users/create">Create <span class="sr-only">(current)</span></a>
+                    </div>
+                    
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('projects')}}">Projects <span class="sr-only">(current)</span></a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Projects
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="nav-link" href="/projects">Show all<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/projects/create">Create <span class="sr-only">(current)</span></a>
+                    </div>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('categories')}}">Categories <span class="sr-only">(current)</span></a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="nav-link" href="/categories">Show all<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/categories/create">Create <span class="sr-only">(current)</span></a>
+                    </div>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('issues')}}">Issues <span class="sr-only">(current)</span></a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Issues
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="nav-link" href="/issues">Show all<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/issues/create">Create <span class="sr-only">(current)</span></a>
+                    </div>
                 </li>
             </ul>
         </div>

@@ -23,8 +23,24 @@
                 {{$category->name}}
             </a>
         </td>
-        <td>{{$category->project->name}}</td>
-        <td>{{$category->user->name}}</td>
+        <td>
+            @if(!is_null($category->project))
+                <a href="/projects/{{$category->project->id}}">
+                    {{$category->project->name}}
+                </a>
+            @else
+                not assign
+            @endif
+        </td>
+        <td>
+            @if(!is_null($category->user))
+                <a href="/users/{{$category->user->id}}">
+                    {{ $category->user->name }}
+                </a>
+            @else
+                not assign
+            @endif
+        </td>
         <td>{{$category->created_at}}</td>
     </tr>
     @endforeach

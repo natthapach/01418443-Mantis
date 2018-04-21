@@ -15,26 +15,44 @@ Route::get('/', function () {
     return view('welcome');
 });
  
-Route::get('/users', 'UsersController@index')->name("users");
-Route::get('/users/{id}', 'UsersController@show')->where('id','[0-9]+')->name("user");
-Route::get('/users/{name}', 'UsersController@showName')->where('name','[a-zA-Z][a-zA-Z0-9]+');
+Route::get('/users', 'UsersController@index');
+Route::get('/users/create', 'UsersController@create');            
+Route::get('/users/{user}/edit', 'UsersController@edit'); 
+Route::get('/users/{user}', 'UsersController@show')->where('id','[0-9]+');
+Route::post('/users', 'UsersController@store');
+Route::put('/users/{user}', 'UsersController@update');
+Route::delete('/users/{user}', 'UsersController@destroy');
 
-Route::get('/projects', 'ProjectsController@index')->name("projects");
-Route::get('/projects/create', 'ProjectsController@create');
-Route::get('/projects/{project}/edit', 'ProjectsController@edit');
+
+Route::get('/projects', 'ProjectsController@index')->name("projects");  
+Route::get('/projects/create', 'ProjectsController@create');            
+Route::get('/projects/{project}/edit', 'ProjectsController@edit');  
 Route::post('/projects', 'ProjectsController@store');
 Route::put('/projects/{project}', 'ProjectsController@update');
 Route::delete('/projects/{project}', 'ProjectsController@destroy');
 Route::get('/projects/{project}', 'ProjectsController@show')->where('id','[0-9]+')->name("project");
 
 Route::get('/categories', 'CategoriesController@index')->name("categories");
-Route::get('/categories/{id}', 'CategoriesController@show')->where('id','[0-9]+')->name("category");
+Route::get('/categories/create', 'CategoriesController@create');            
+Route::get('/categories/{category}/edit', 'CategoriesController@edit'); 
+Route::get('/categories/{category}', 'CategoriesController@show')->where('id','[0-9]+')->name("category");
+Route::post('/categories', 'CategoriesController@store');
+Route::put('/categories/{category}', 'CategoriesController@update');
+Route::delete('/categories/{category}', 'CategoriesController@destroy');
 
-Route::get('/issues', 'IssuesController@index')->name("issues");
-Route::get('/issues/{id}', 'IssuesController@show')->where('id','[0-9]+')->name("issue");
+
+Route::get('/issues', 'IssuesController@index');
+Route::get('/issues/create', 'IssuesController@create');            
+Route::get('/issues/{issue}/edit', 'IssuesController@edit'); 
+Route::get('/issues/{issue}', 'IssuesController@show')->where('id','[0-9]+');
+Route::post('/issues', 'IssuesController@store');
+Route::put('/issues/{issue}', 'IssuesController@update');
+Route::delete('/issues/{issue}', 'IssuesController@destroy');
 
 Route::get('/photoes/create', 'PhotoesController@create');
 Route::post('/photoes', 'PhotoesController@store');
+
+Route::get("/test-vue/{any}", 'TestVueController@index')->where('any', '.*');
 
 Route::get('storage/{filename}', function ($filename)
 {
@@ -42,8 +60,8 @@ Route::get('storage/{filename}', function ($filename)
     $path = storage_path('app\public\\' . $filename);
 
     if (!File::exists($path)) {
-        // abort(404);
-        return "file not exist " . $filename;
+        abort(404);
+        // return "file not exist " . $filename;
     }
 
     $file = File::get($path);

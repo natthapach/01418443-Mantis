@@ -19,7 +19,7 @@
     <tr>
         <th scope="row">{{$user->id}}</th>
         <td>
-            <a href="{{ route('user', ['id'=>$user->id]) }}">
+            <a href="/users/{{$user->id}}">
                 {{$user->username}}
             </a>
         </td>

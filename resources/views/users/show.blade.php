@@ -22,10 +22,33 @@
                                 <b style="color:red">Disable</b>
                             @endif
                         </p>
+                        
+                    </div>
 
+                    
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <a href="/users/{{$user->id}}/edit" class="btn btn-success col-6">
+                            <button class="btn col-6 " style="color:white;background: rgba(0,0,0,0)">
+                                Edit
+                            </button>
+                        </a>
+                        <form class="col-6 btn btn-danger" style="margin:0px" action="/users/{{ $user->id }}" method="post">
+                            @csrf
+                            @method("DELETE")
+                            
+                            <button id="delete-btn" class="btn col-6 " style="color:white;background: rgba(0,0,0,0)" type="submit">Delete</button>
+                        </form>
                     </div>
                 </div>
+                
+                
             </div>
+            
+            
+
+            
         </div>
     </div>
 @endsection
