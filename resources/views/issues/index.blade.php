@@ -22,7 +22,7 @@
 @section("body")
     @foreach($issues as $issue)
     <tr>
-        <th scope="row">{{$issue->id}}</th>
+        <th scope="row">{{$issue->issue_number}}</th>
         <td>
             <a href="/issues/{{$issue->id}}">
                 {{$issue->summary}}

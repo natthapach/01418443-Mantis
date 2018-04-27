@@ -16,10 +16,24 @@
                     {{-- csrf_field() --}}
                     <label for="name">Name:</label>
                     <input id="name" class="form-control" type="text" name="name" value="{{ old('name') ?? $project->name }}">
+                    @if($errors->has('name'))    
+                        <div class="alert alert-danger">
+                            @foreach($errors->get('name') as $message)
+                                {{ $message }}
+                            @endforeach
+                        </div>    
+                    @endif
 
                     <label for="description">Description</label>
                     <textarea class="form-control" name="description" id="description" cols="30" rows="8">{{ old('description') ?? $project->description }}</textarea>
-                    
+                    @if($errors->has('description'))    
+                        <div class="alert alert-danger">
+                            @foreach($errors->get('description') as $message)
+                                {{ $message }}
+                            @endforeach
+                        </div>    
+                    @endif
+
                     <label for="view_status">View Status</label>
                     <select class="form-control" name="view_status" id="view_status">
                         @foreach($view_status as $key => $value)

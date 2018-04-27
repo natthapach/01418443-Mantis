@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth', [
+            "except" => ["index", "show"]
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,6 +31,13 @@ class UsersController extends Controller
      */
     public function create()
     {
+        // if(\Gate::denies('create-user')){
+        //     return redirect('/users');
+        // }
+        // if(\Auth::user()->cant('create', User::class)){
+        //     return 'denie';
+        // }
+        $this->authorize('create', User::class);
         $accessLevels = [
             'viewer', 'reporter', 'developer',
             'manager', 'administrator'
@@ -40,6 +53,12 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            "username" => "min:6|max:20|unique:users,username",
+            "name" => "min:6",
+            "email" => "unique:users,email|email",
+            "password" => "min:6"
+        ]);
         try{
             $user = new User;
             $user->username = $request->input('username');
@@ -75,6 +94,11 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        if(\Auth::user()->cant('update', $user))
+            return 'denie';
+        // if(\Gate::denies('update-user', $user)){
+        //     return redirect('/users');
+        // }
         $accessLevels = [
             'viewer', 'reporter', 'developer',
             'manager', 'administrator'
@@ -82,7 +106,7 @@ class UsersController extends Controller
         return view("users.edit", [
             "accessLevels" => $accessLevels,
             "user" => $user
-            ]);
+        ]);
     }
 
     /**
@@ -94,6 +118,12 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $validateData = $request->validate([
+            "username" => "min:6|max:20|unique:users,username,$user->id",
+            "name" => "min:6",
+            "email" => "unique:users,email|email",
+            "password" => "min:6"
+        ]);
         try{
             $user->name = $request->input('name');
             $user->email = $request->input('email');

@@ -4,7 +4,7 @@
 </head>
 <body>
     <div id="app">
-        <app projects='{!! json_encode($projects) !!}' users='{!! json_encode($users) !!}'>
+        <app categories-json='{!! json_encode($categories) !!}' projects='{!! json_encode($projects) !!}' users='{!! json_encode($users) !!}'>
 
         </app>
     </div>

@@ -8,6 +8,7 @@ import Hello from './views/Hello'
 import Home from './views/Home'
 import Projects from './views/Projects'
 import Users from './views/Users'
+import Category from './views/Category'
 
 const router = new VueRouter({
     mode: 'history',
@@ -31,6 +32,11 @@ const router = new VueRouter({
             path: '/test-vue/users',
             name: 'users',
             component: Users,
+        },
+        {
+            path: '/test-vue/category/:id',
+            name: 'category',
+            component: Category
         }
     ],
 });

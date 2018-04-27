@@ -74,15 +74,16 @@
                                 Edit
                             </button>
                         </a>
-                        <form class="col-6 btn btn-danger" style="margin:0px" action="/issues/{{ $issue->id }}" method="post">
-                            @csrf
-                            @method("DELETE")
-                            
+                        <a class="btn btn-danger col-6" href="/issues/{{ $issue->id }}" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Are you sure?">
                             <button id="delete-btn" class="btn col-6 " style="color:white;background: rgba(0,0,0,0)" type="submit">Delete</button>
-                        </form>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@push("js")
+    <script src="{{ asset('js/confirm-delete.js') }}" defer></script>
+@endpush

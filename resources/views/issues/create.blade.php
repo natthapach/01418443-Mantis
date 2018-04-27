@@ -15,9 +15,9 @@
 
                     <label for="summary">Summary</label>
                     <input id="summary" class="form-control" type="text" name="summary" value="{{ old('name') }}">
-                    @if($errors->has('name'))    
+                    @if($errors->has('summary'))    
                         <div class="alert alert-danger">
-                            @foreach($errors->get('name') as $message)
+                            @foreach($errors->get('summary') as $message)
                                 {{ $message }}
                             @endforeach
                         </div>    
@@ -43,18 +43,7 @@
                                 <option value="{{ $category->id }}">{{$category->id . " : " . $category->name}}</option>
                             @endif
                         @endforeach
-                    </select>
-
-                    <label for="reporter">Reporter</label>
-                    <select class="form-control" name="reporter" id="reporter">
-                        @foreach($users as $user)
-                            @if(old('reporter') == $user->id)
-                                <option value="{{ $user->id }}" selected>{{$user->id . " : " . $user->name}}</option>
-                            @else
-                                <option value="{{ $user->id }}">{{$user->id . " : " . $user->name}}</option>
-                            @endif
-                        @endforeach
-                    </select>
+                    </select> 
 
                     <label for="assigned_to">Assign to</label>
                     <select class="form-control" name="assigned_to" id="assigned_to">

@@ -11,17 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
  
-Route::get('/users', 'UsersController@index');
-Route::get('/users/create', 'UsersController@create');            
-Route::get('/users/{user}/edit', 'UsersController@edit'); 
-Route::get('/users/{user}', 'UsersController@show')->where('id','[0-9]+');
-Route::post('/users', 'UsersController@store');
-Route::put('/users/{user}', 'UsersController@update');
-Route::delete('/users/{user}', 'UsersController@destroy');
+Route::resource("/users", "UsersController");
 
 
 Route::get('/projects', 'ProjectsController@index')->name("projects");  
@@ -85,3 +76,8 @@ Route::get('storage/{filename}', function ($filename)
 // 	$cate = \App\Category::findOrFail($id);
 // 	return $cate;
 // })->where('id','[0-9]+');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get("/", "DashboardController@index");

@@ -24,4 +24,8 @@ class Issue extends Model
     public function assignTo(){
         return $this->belongsTo("App\User", "assigned_to");
     }
+
+    public function getIssueNumberAttribute(){
+        return str_pad($this->id, 6, '0', STR_PAD_LEFT);
+    }
 }

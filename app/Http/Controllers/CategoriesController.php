@@ -43,6 +43,9 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            "name" => "min:4"
+        ]);
         try{
             $category = new Category;
             $category->name = $request->input("name");
@@ -94,6 +97,9 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        $validateData = $request->validate([
+            "name" => "min:4"
+        ]);
         try{
             $category->name = $request->input("name");
             $category->project_id = $request->input("project");

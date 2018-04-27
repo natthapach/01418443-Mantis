@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class IssuesController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth',[
+            'except' => [
+                'index', 'show'
+            ]
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,12 +57,15 @@ class IssuesController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            "summary" => "min:4"
+        ]);
         try{
             $issue = new Issue;
             $issue->summary = $request->input("summary");
             $issue->category_id = $request->input("category");
             $issue->project_id = $request->input("project");
-            $issue->reporter = $request->input("reporter");
+            $issue->reporter = $request->user()->id;
             $issue->assigned_to = $request->input("assigned_to");
             $issue->status = $request->input("status");
             $issue->priority = $request->input("priority");
@@ -116,11 +126,13 @@ class IssuesController extends Controller
      */
     public function update(Request $request, Issue $issue)
     {
+        $validateData = $request->validate([
+            "summary" => "min:4"
+        ]);
         try{
             $issue->summary = $request->input("summary");
             $issue->category_id = $request->input("category");
             $issue->project_id = $request->input("project");
-            $issue->reporter = $request->input("reporter");
             $issue->assigned_to = $request->input("assigned_to");
             $issue->status = $request->input("status");
             $issue->priority = $request->input("priority");

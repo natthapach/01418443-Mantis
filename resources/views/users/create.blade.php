@@ -14,6 +14,13 @@
                     {{ csrf_field() }}
                     <label for="username">Username :</label>
                     <input id="username" class="form-control" type="text" name="username" value="{{ old('username') }}">
+                    @if($errors->has('username'))    
+                        <div class="alert alert-danger">
+                            @foreach($errors->get('username') as $message)
+                                {{ $message }}
+                            @endforeach
+                        </div>    
+                    @endif
 
                     <label for="name">Name :</label>
                     <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}">
@@ -27,9 +34,23 @@
 
                     <label for="email">E-mail :</label>
                     <input id="email" class="form-control" type="text" name="email" value="{{ old('email') }}">
-
+                    @if($errors->has('email'))    
+                        <div class="alert alert-danger">
+                            @foreach($errors->get('email') as $message)
+                                {{ $message }}
+                            @endforeach
+                        </div>    
+                    @endif
+                    
                     <label for="password">Password:</label>
                     <input id="password" class="form-control" type="password" name="password" value="{{ old('password') }}">
+                    @if($errors->has('password'))    
+                        <div class="alert alert-danger">
+                            @foreach($errors->get('password') as $message)
+                                {{ $message }}
+                            @endforeach
+                        </div>    
+                    @endif
 
                     <label for="access_level">Access Level</label>
                     <select class="form-control" name="access_level" id="access_level">

@@ -27,7 +27,14 @@
 
                     <label for="email">E-mail :</label>
                     <input id="email" class="form-control" type="text" name="email" value="{{ old('email') ?? $user->email }}">
-
+                    @if($errors->has('email'))    
+                        <div class="alert alert-danger">
+                            @foreach($errors->get('email') as $message)
+                                {{ $message }}
+                            @endforeach
+                        </div>    
+                    @endif
+                    
                     <label for="access_level">Access Level</label>
                     <select class="form-control" name="access_level" id="access_level">
                         @foreach($accessLevels as $level)

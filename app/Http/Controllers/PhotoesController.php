@@ -37,7 +37,7 @@ class PhotoesController extends Controller
     {
         $validatedData = $request->validate([
             'photo' => 'mimetypes:video/avi,video/mpeg,video/quicktime'
-        ])
+        ]);
         $filename = Storage::put('public', $request->file("photo"));
         $filename = substr($filename, 7);
         return view("photoes.show")->with("filename", $filename);
